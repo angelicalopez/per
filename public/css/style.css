@@ -3,6 +3,10 @@
 }
 
 .transparent{
-    background-color:rgba(0,0,0,0) !important;
-    
+    background-color:rgba(0,0,0,0) !important;  
 } 
+
+.active > .page-link {
+    background-color: #EB5E28 !important;
+    border-color: #EB5E28 !important;
+}
