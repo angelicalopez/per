@@ -29,7 +29,10 @@
                 <div class="col-md-7 col-xs-4 text-center mx-auto">
                     <h6>{{ $admin->user->name }} {{ $admin->apellidos }}<br /><small>Administrador</small></h6>
                 </div>
-                <div class="col-md-3 col-xs-2">
+                <div class="col-md-1 align-middle">
+                    <a href="{{ route('superuser.admin.edit', $admin->id) }}"><i class="fas fa-user-edit"></i></a>                    
+                </div>
+                <div class="col-md-1 align-middle">
                     <div class="unfollow">
                         <label class="checkbox" for="checkbox1" >
                             <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" @if($admin->user->estado == 'A') checked @endif>

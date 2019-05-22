@@ -22,9 +22,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/superuser/admin', 'RootController@administradores')->name('superuser.admin');
     Route::get('/superuser/admin/create', 'RootController@crearadmin')->name('superuser.admin.crear');
+    Route::get('/superuser/admin/edit/{id}', 'RootController@editadmin')->name('superuser.admin.edit');
    // Route::post('/superuser/admin/store', 'RootController@storeadmin')->name('superuser.admin.store');
 });
 
 route::group(['middleware' => 'auth'], function() {
     Route::post('/admin/store', 'AdminController@store')->name('admin.store');
+    Route::put('/admin/update/{id}', 'AdminController@update')->name('admin.update');
 });
