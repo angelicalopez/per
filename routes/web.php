@@ -29,4 +29,12 @@ Route::group(['middleware' => 'auth'], function() {
 route::group(['middleware' => 'auth'], function() {
     Route::post('/admin/store', 'AdminController@store')->name('admin.store');
     Route::put('/admin/update/{id}', 'AdminController@update')->name('admin.update');
+    Route::get('/admin/egresados', 'EgresadoController@index')->name('admin.egresados');
+    Route::get('/admin/egresados/create', 'EgresadoController@create')->name('admin.egresado.create');
 });
+
+route::group(['middleware' => 'auth'], function() {
+    Route::post('/egresado/store', 'EgresadoController@store')->name('egresado.store');
+    Route::put('/egresado/update/{id}', 'EgresadoController@update')->name('egresado.update');
+});
+
