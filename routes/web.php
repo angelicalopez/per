@@ -31,6 +31,7 @@ route::group(['middleware' => 'auth'], function() {
     Route::put('/admin/update/{id}', 'AdminController@update')->name('admin.update');
     Route::get('/admin/egresados', 'EgresadoController@index')->name('admin.egresados');
     Route::get('/admin/egresados/create', 'EgresadoController@create')->name('admin.egresado.create');
+    Route::get('/admin/egresados/edit/{id}', 'EgresadoController@edit')->name('admin.egresado.edit');
 });
 
 route::group(['middleware' => 'auth'], function() {

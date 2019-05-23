@@ -88,24 +88,6 @@
                             <br>
                         @endif
 
-                        <label class="orange-color mt-2">Direccion</label>
-                        <input name="direccion" type="text" class="form-control border" placeholder="direccion">
-                        @if ($errors->has('direccion'))
-                            <span class="help-block">
-                                    <strong>{{ $errors->first('direccion') }}</strong>
-                            </span>
-                            <br>
-                        @endif
-
-                        <label class="orange-color mt-2">Telefono</label>
-                        <input name="telefono" min="0" type="number" class="form-control border" placeholder="telefono">
-                        @if ($errors->has('telefono'))
-                            <span class="help-block">
-                                    <strong>{{ $errors->first('telefono') }}</strong>
-                            </span>
-                            <br>
-                        @endif
-
                         <label class="orange-color mt-2">Pais</label>
                         <select name="pais_id" required class="form-control border">
                             @foreach($paises as $pais)

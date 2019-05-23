@@ -25,6 +25,7 @@ class EgresadoRequest extends FormRequest
     public function rules()
     {
         $this->generos = array('M', 'F');
+        $this->estados = array('A', 'I');
         switch($this->method()) {
             case 'POST':
                 $rules = [
@@ -34,8 +35,6 @@ class EgresadoRequest extends FormRequest
                     'dni' => 'required|min:8|max:50|unique:administradores',
                     'edad' => 'numeric|min:14',
                     'genero' => Rule::in($this->generos),
-                    'direccion' => 'nullable|min:8|max:50',
-                    'telefono' => 'nullable|min:7|max:50',
                     'pais_id' => 'integer|exists:paises,id',
                     'password' => 'required|min:6|max:20'
                 ];
@@ -44,14 +43,13 @@ class EgresadoRequest extends FormRequest
             $rules = [
                 'name' => 'required|min:3|max:100',
                 'apellidos' => 'required|min:3|max:100',
-                'email' => 'required|email|unique:users',
-                'dni' => 'required|min:8|max:50|unique:administradores',
+                'email' => 'required|email|unique:users,email,'.$this->id,
+                'dni' => 'required|min:8|max:50|unique:administradores,dni,'.$this->egresado_id,
                 'edad' => 'numeric|min:14',
-                'genero' => Rule::in(generos),
-                'direccion' => 'nullable|min:8|max:50',
-                'telefono' => 'nullable|min:7|max:50',
+                'genero' => Rule::in($this->generos),
                 'pais_id' => 'integer|exists:paises,id',
-                'password' => 'required|min:6|max:20'
+                'password' => 'nullable|min:6|max:20',
+                'estado' => 'required',Rule::in($this->estados)
             ];
             break;
         }

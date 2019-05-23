@@ -71,7 +71,7 @@ class EgresadoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -82,7 +82,9 @@ class EgresadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paises = Pais::all();
+        $egresado = Egresado::find($id);
+        return view('admin.egresado_edit')->with('paises', $paises)->with('egresado', $egresado);
     }
 
     /**
@@ -92,9 +94,27 @@ class EgresadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EgresadoRequest $request, $id)
     {
-        //
+        $egresado = Egresado::find($id);
+        $user = $egresado->user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password != null)
+            $user->password = bcrypt($request->password);
+        $user->estado = $request->estado;
+        $user->save();
+
+        $egresado->apellidos = $request->apellidos;
+        $egresado->dni = $request->dni;
+        $egresado->pais_id = $request->pais_id;
+        if ($egresado->edad != null)
+            $egresado->edad = $request->edad;
+        $egresado->genero = $request->genero;
+        $egresado->save();
+
+        $mensaje = "Egresado " . $user->name . " " . $egresado->apellidos . " editado con exito";
+        return redirect()->route('admin.egresado.edit', $egresado->id)->with('success', $mensaje);
     }
 
     /**

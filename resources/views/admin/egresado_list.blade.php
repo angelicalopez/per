@@ -24,22 +24,23 @@
                 </div>
             </div>
             <hr>
-            
+            @foreach($egresados as $egresado)
             <div class="row">
                 <div class="col-md-7 col-xs-4 text-center mx-auto">
-                    <h6>Nombre<br /><small>Egresado</small></h6>
+                <h6>{{ $egresado->user->name }} {{ $egresado->apellidos }}<br /><small>Egresado</small></h6>
                 </div>
                 <div class="col-md-1 align-middle">
-                    <a href=""><i class="fas fa-user-edit"></i></a>                    
+                <a href="{{ route('admin.egresado.edit', $egresado->id) }}"><i class="fas fa-user-edit"></i></a>
                 </div>
                 <div class="col-md-1 align-middle">
                     <div class="unfollow">
                         <label class="checkbox" for="checkbox1" >
-                            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" @if($egresado->user->estado == 'A') checked @endif>
                         </label>
                     </div>
                 </div>
             </div>
+            @endforeach
             
 
             <div class="row mt-5">
