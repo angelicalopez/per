@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VideoNoticia extends Model
 {
-    protected $table = 'video_noticias';
+    protected $table = 'videos_noticias';
     protected $fillable = [
         'url', 'noticia_id',
     ];

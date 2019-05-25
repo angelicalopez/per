@@ -43,9 +43,9 @@
 
                         <label class="orange-color mt-2">Descripcion</label>                        
                         <textarea name="descripcion" required id="" cols="30" class="form-control border"></textarea>
-                        @if ($errors->has('apellidos'))
+                        @if ($errors->has('descripcion'))
                             <span class="help-block">
-                                    <strong>{{ $errors->first('apellidos') }}</strong>
+                                    <strong>{{ $errors->first('descripcion') }}</strong>
                             </span>
                             <br>
                         @endif
@@ -55,9 +55,9 @@
                         <div class="row">
                             <div class="col-4 border p-1" id="archivos">
                                 <p class="text-center font-weight-bold">Agrega archivos a la notica</p>
-                                @if ($errors->has('archivos'))
+                                @if ($errors->has('archivos.*'))
                                     <span class="help-block small">
-                                            <strong>{{ $errors->first('archivos') }}</strong>
+                                            <strong>{{ $errors->first('archivos.*') }}</strong>
                                     </span>
                                     <br>
                                 @endif
@@ -79,9 +79,9 @@
                             </div>
                             <div class="col-4 border p-1" id="videos">
                                 <p class="text-center font-weight-bold">Agrega videos a la noticia</p>
-                                @if ($errors->has('videos'))
+                                @if ($errors->has('videos.*'))
                                     <span class="help-block small">
-                                            <strong>{{ $errors->first('videos') }}</strong>
+                                            <strong>{{ $errors->first('videos.*') }}</strong>
                                     </span>
                                     <br>
                                 @endif
