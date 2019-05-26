@@ -33,6 +33,7 @@
                             <button class="btn align-self-end align-self-center text-white border" type="button" data-toggle="collapse" data-target="#multiCollapse1_{{ $noticia->id }}" aria-expanded="false" aria-controls="multiCollapse1_{{ $noticia->id }}">Archivos</button>
                             <button class="btn align-self-end align-self-center text-white border" type="button" data-toggle="collapse" data-target="#multiCollapse2_{{ $noticia->id }}" aria-expanded="false" aria-controls="multiCollapse2_{{ $noticia->id }}">Imagenes</button>
                             <button class="btn align-self-end align-self-center text-white border" type="button" data-toggle="collapse" data-target="#multiCollapse3_{{ $noticia->id }}" aria-expanded="false" aria-controls="multiCollapse3_{{ $noticia->id }}">Videos</button>
+                            <a href="{{ route('admin.noticia.edit', $noticia->id) }}" class="btn align-self-end align-self-center text-white border" type="button" >Editar</a>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $noticia->nombre }}</h5>

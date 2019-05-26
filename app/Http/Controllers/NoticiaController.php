@@ -105,7 +105,8 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $noticia = Noticia::find($id);
+        return view('admin.noticia_edit')->with('noticia', $noticia);
     }
 
     /**
@@ -118,6 +119,21 @@ class NoticiaController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * Update the multimedia files for a specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatemultimedia(Request $request, $id) {
+        if ($request->ajax()) {
+            echo $request>all();
+            return response()->json(['status' => 200]);
+        }
+        //dd($request->all());
     }
 
     /**
