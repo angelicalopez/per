@@ -60,7 +60,7 @@
                                 <h6 class="small">Archivos</h6>
                                 @foreach($noticia->archivos as $archivo)
                                     <div class="form-control">
-                                        <input class="form-check-input" type="checkbox" name="archivos_existentes[]" value="{{ $archivo->id }}" id="noticia_{{ $archivo->id }}">
+                                        <input class="form-check-input" type="checkbox" name="archivos_borrar[]" value="{{ $archivo->id }}" id="noticia_{{ $archivo->id }}">
                                         <label class="form-check-label" for="noticia_{{ $archivo->id }}">
                                             <a href="/{{ $archivo->ruta }}">{{ $archivo->nombre }}</a>
                                         </label>
@@ -69,7 +69,7 @@
                                 <h6 class="small">Imagenes</h6>
                                 @foreach($noticia->imagenes as $imagen)
                                     <div class="form-control">
-                                        <input class="form-check-input" type="checkbox" name="imagenes_existentes[]" value="{{ $imagen->id }}" id="imagen_{{ $imagen->id }}">
+                                        <input class="form-check-input" type="checkbox" name="imagenes_borrar[]" value="{{ $imagen->id }}" id="imagen_{{ $imagen->id }}">
                                         <label class="form-check-label" for="imagen_{{ $imagen->id }}">
                                             <a href="/{{ $imagen->ruta }}">{{ $imagen->nombre }}</a>
                                         </label>
@@ -78,13 +78,12 @@
                                 <h6 class="small">Videos</h6>
                                 @foreach($noticia->videos as $video)
                                     <div class="form-control">
-                                        <input class="form-check-input" type="checkbox" name="videos_existentes[]" value="{{ $video->id }}" id="video_{{ $video->id }}">
+                                        <input class="form-check-input" type="checkbox" name="videos_borrar[]" value="{{ $video->id }}" id="video_{{ $video->id }}">
                                         <label class="form-check-label" for="video_{{ $video->id }}">
                                             <a href="/{{ $video->ruta }}">{{ $video->nombre }}</a>
                                         </label>
                                     </div>
                                 @endforeach
-                                <a class="btn btn-secondary white-hover" type="button" id="delete-multimedia">Eliminar multimedia</a>
                                 <hr>
                             </div>
                         </div>
@@ -142,5 +141,4 @@
 
 @section('scripts')
 <script src="{{ asset('js/noticias/add-multimedia.js') }}"></script>
-<script src="{{ asset('js/noticias/delete-multimedia.js') }}"></script>
 @endsection

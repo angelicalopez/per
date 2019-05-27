@@ -118,22 +118,73 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $noticia = Noticia::find($id);
+        $noticia->nombre = $request->nombre;
+        $noticia->descripcion = $request->descripcion;
+        $noticia->save();
 
-    /**
-     * Update the multimedia files for a specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updatemultimedia(Request $request, $id) {
-        if ($request->ajax()) {
-            echo $request>all();
-            return response()->json(['status' => 200]);
+        // borra los archivos existentes
+        if ($request->has('archivos_borrar')) {
+            foreach($request->archivos_borrar as $archivo_id) {
+                $archivo = ArchivoNoticia::find($archivo_id);
+                File::delete('public/' . $archivo->ruta);
+                $archivo->delete();
+            }
         }
-        //dd($request->all());
+
+        // borra imagenes existentes
+        if ($request->has('imagenes_borrar')) {
+            foreach($request->imagenes_borrar as $imagen_id) {
+                $imagen = ImagenNoticia::find($imagen_id);
+                File::delete('public/' . $imagen->ruta);
+                $imagen->delete();
+            }
+        }
+
+        // borra videos existentes
+        if ($request->has('videos_borrar')) {
+            foreach($request->videos_borrar as $video_id) {
+                $video = VideoNoticia::find($video_id);
+                $video->delete();
+            }
+        }
+
+        // agrega nuevos archivos
+        if ($request->has('archivos')) {
+            foreach($request->archivos as $archivo) {
+                $path = $archivo->move('uploads/', $archivo->hashName());
+                ArchivoNoticia::create([
+                    'nombre' => $archivo->getClientOriginalName(),
+                    'ruta' => $path,
+                    'noticia_id' => $noticia->id
+                ]);
+            }
+        }
+
+        // agrega nuevas imagenes
+        if ($request->has('imagenes')) {
+            foreach($request->imagenes as $imagen) {
+                $path = $imagen->move('uploads/', $imagen->hashName());
+                ImagenNoticia::create([
+                    'nombre' => $imagen->getClientOriginalName(),
+                    'ruta' => $path,
+                    'noticia_id' => $noticia->id
+                ]);
+            }
+        }
+
+        // agrega nuevos videos
+        foreach($request->videos as $video) {
+            if ($video != null) {
+                VideoNoticia::create([
+                    'url' => $video,
+                    'noticia_id' => $noticia->id
+                ]);
+            }
+        }
+
+        $mensaje = 'La noticia ' . $noticia->nombre . ' ha sido editada con exito';
+        return redirect()->route('admin.noticia.edit', $noticia->id)->with('info', $mensaje);
     }
 
     /**

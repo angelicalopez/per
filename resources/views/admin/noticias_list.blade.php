@@ -44,7 +44,7 @@
                                     <div class="card card-body">
                                         <div class="row">
                                             @foreach($noticia->archivos as $archivo)
-                                            <div class="col-4 border m-1 justify-content">
+                                            <div class="col-s4 border m-1 mx-auto">
                                                 <a href="/{{ $archivo->ruta }}">{{ $archivo->nombre }}</a>
                                             </div>
                                             @endforeach
@@ -59,7 +59,7 @@
                                     <div class="card card-body text-center">
                                         <div class="row">
                                             @foreach($noticia->imagenes as $imagen)
-                                            <div class="col-4 m-1 border text-center">
+                                            <div class="col-l4 m-1 border text-center">
                                                 <img src="/{{ $imagen->ruta }}" alt="" class="rounded h-100 w-100">
                                             </div>
                                             @endforeach
@@ -72,7 +72,13 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapse3_{{ $noticia->id }}">
                                     <div class="card card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                        <div class="row">
+                                            @foreach($noticia->videos as $video)
+                                            <div class="col-s4 m-1 border text-center">
+                                                <img src="/{{ $video->ruta }}" alt="" class="rounded h-100 w-100">
+                                            </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                     </div>
                                 </div>
