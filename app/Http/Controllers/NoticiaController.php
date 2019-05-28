@@ -127,7 +127,7 @@ class NoticiaController extends Controller
         if ($request->has('archivos_borrar')) {
             foreach($request->archivos_borrar as $archivo_id) {
                 $archivo = ArchivoNoticia::find($archivo_id);
-                File::delete('public/' . $archivo->ruta);
+                File::delete($archivo->ruta);
                 $archivo->delete();
             }
         }
@@ -136,7 +136,7 @@ class NoticiaController extends Controller
         if ($request->has('imagenes_borrar')) {
             foreach($request->imagenes_borrar as $imagen_id) {
                 $imagen = ImagenNoticia::find($imagen_id);
-                File::delete('public/' . $imagen->ruta);
+                File::delete($imagen->ruta);
                 $imagen->delete();
             }
         }
@@ -195,6 +195,33 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $noticia = Noticia::find($id);
+        // borra los archivos existentes
+        foreach($noticia->archivos as $archivo) {
+            if (File::delete($archivo->ruta)) {
+                $archivo->delete();
+            }
+        }
+        
+
+        // borra imagenes existentes
+        foreach($noticia->imagenes as $imagen) {
+            if (File::delete($imagen->ruta)) {
+                $imagen->delete();
+            }
+        }
+        
+
+        // borra videos existentes
+        foreach($noticia->videos as $video) {
+            $video->delete();
+        }
+
+        $message = "Noticia " . $noticia->nombre . " borrada con exito";
+        $noticia->delete();
+
+
+        return redirect()->route('admin.noticias')->with('info', $message);
+        
     }
 }

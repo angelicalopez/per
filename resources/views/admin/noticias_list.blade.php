@@ -34,6 +34,12 @@
                             <button class="btn align-self-end align-self-center text-white border" type="button" data-toggle="collapse" data-target="#multiCollapse2_{{ $noticia->id }}" aria-expanded="false" aria-controls="multiCollapse2_{{ $noticia->id }}">Imagenes</button>
                             <button class="btn align-self-end align-self-center text-white border" type="button" data-toggle="collapse" data-target="#multiCollapse3_{{ $noticia->id }}" aria-expanded="false" aria-controls="multiCollapse3_{{ $noticia->id }}">Videos</button>
                             <a href="{{ route('admin.noticia.edit', $noticia->id) }}" class="btn align-self-end align-self-center text-white border" type="button" >Editar</a>
+                            <button type="button" class="btn align-self-end align-self-center text-white border btn-modal" data-toggle="modal" data-target="#delete_modal" aria-id="{{ $noticia->id }}">Borrar</button>
+                            <form method="POST" action="{{ route('admin.noticia.delete', $noticia->id) }}" id="delete_form_{{ $noticia->id }}">
+                                @csrf
+                                {{ method_field('delete') }}
+                                <input type="hidden" name="noticia_id" value="{{ $noticia->id }}">
+                            </form>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $noticia->nombre }}</h5>
@@ -99,3 +105,39 @@
         </div>
     </div> 
 @endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            var noticia_id = 0;
+            $('.btn-modal').on('click', function() {
+                noticia_id = $(this).attr('aria-id');
+            });
+
+            $('#btn-confirm-delete').on('click', function() {
+                $('#delete_form_'+noticia_id).submit();
+            });
+        });
+    </script>
+@endsection
+
+<!-- Modal -->
+<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">Confirmar accion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Al borrar la noticia tambien se borraran los archivos multimedia asociados y no podran ser visto por los usuarios
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btn-confirm-delete">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
