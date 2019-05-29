@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/changepassword', 'HomeController@changePasswordView')->name('changepasswordview');
+Route::post('/password', 'HomeController@changePassword')->name('changepassword');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/superuser/admin', 'RootController@administradores')->name('superuser.admin');
