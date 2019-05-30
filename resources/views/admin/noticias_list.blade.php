@@ -80,8 +80,8 @@
                                     <div class="card card-body">
                                         <div class="row">
                                             @foreach($noticia->videos as $video)
-                                            <div class="col-s4 m-1 border text-center">
-                                                <img src="/{{ $video->ruta }}" alt="" class="rounded h-100 w-100">
+                                            <div class="col-l4 m-1 border text-center mx-auto hv-25">
+                                                <iframe src="https://www.youtube.com/embed/{{$video->url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                             </div>
                                             @endforeach
                                         </div>

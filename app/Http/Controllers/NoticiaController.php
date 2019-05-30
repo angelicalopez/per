@@ -75,10 +75,15 @@ class NoticiaController extends Controller
 
         foreach($request->videos as $video) {
             if ($video != null) {
-                VideoNoticia::create([
-                    'url' => $video,
-                    'noticia_id' => $noticia->id
-                ]);
+                $url = explode('=', $video);
+                try {
+                    VideoNoticia::create([
+                        'url' => $url[1],
+                        'noticia_id' => $noticia->id
+                    ]);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
             }
         }
 
@@ -176,10 +181,15 @@ class NoticiaController extends Controller
         // agrega nuevos videos
         foreach($request->videos as $video) {
             if ($video != null) {
-                VideoNoticia::create([
-                    'url' => $video,
-                    'noticia_id' => $noticia->id
-                ]);
+                $url = explode('=', $video);
+                try {
+                    VideoNoticia::create([
+                        'url' => $url[1],
+                        'noticia_id' => $noticia->id
+                    ]);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
             }
         }
 

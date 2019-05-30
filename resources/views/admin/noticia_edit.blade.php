@@ -80,7 +80,7 @@
                                     <div class="form-control">
                                         <input class="form-check-input" type="checkbox" name="videos_borrar[]" value="{{ $video->id }}" id="video_{{ $video->id }}">
                                         <label class="form-check-label" for="video_{{ $video->id }}">
-                                            <a href="/{{ $video->ruta }}">{{ $video->nombre }}</a>
+                                            <a href="https://www.youtube.com/watch?v={{ $video->url }}">https://www.youtube.com/watch?v={{ $video->url }}</a>
                                         </label>
                                     </div>
                                 @endforeach
