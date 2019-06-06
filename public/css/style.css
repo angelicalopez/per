@@ -95,8 +95,10 @@
 }
 
 #profile-picture {
-    width: 50% !important;
-    height: 50% !important;
-    border: 20px solid rgba(0, 0, 0, 0.17);
+    border: 20px solid rgba(0, 0, 0, 0.05);
     border-radius: 50%;
+}
+
+.edit-picture:hover {
+    background-color: #EB5E28;
 }

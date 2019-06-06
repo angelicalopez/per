@@ -9,7 +9,7 @@ class Egresado extends Model
     protected $table = 'egresados';
 
     protected $fillable = [
-        'apellidos', 'dni', 'genero', 'manejo_datos', 'edad', 'user_id', 'pais_id',
+        'apellidos', 'dni', 'genero', 'manejo_datos', 'edad', 'user_id', 'pais_id', 'imagen',
     ];
 
     protected $hidden = [
