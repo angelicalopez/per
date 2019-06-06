@@ -6,26 +6,28 @@
 
     @include('layouts.nav_egresado')
     <div class="navbar-egresado"></div>
-    <div class="container-fluid vh-100">
-        <div class="row h-50 p-2 shadow-sm">
-            <div class="col-6 d-flex flex-column justify-content-center">
-                <img class="img-thumbnail h-50 w-50 mx-auto" src="{{ asset('paper_img/male_avatar.png') }}" alt="profile picture">
-                <h5 class="text-center mt-2">
-                    <a class="p-2 orange-color button-hover" href="#">Actualizar perfil</a>   
-                </h5>
-            </div>
-            <div class="col-6 d-flex flex-column justify-content-center" id="profile-section-2">
-                <div class="text-center">
-                    <div> {{ $user->name }} </div>
-                    <div> {{ $user->egresado->apellidos }} </div>
-                    <div> {{ $user->egresado->pais->nombre }} </div>
-                    <div> {{ $user->egresado->edad }} anios</div>
+    <div class="container vh-100 p-3">
+        <div class="row p-20 h-50">
+            <div class="col-12 d-flex flex-row text-center">
+                <div class="align-self-center">
+                    <img class="img-thumbnail mx-auto" id="profile-picture" src="{{ asset('paper_img/male_avatar.png') }}" alt="profile picture">
+                </div>
+                <div class="align-self-center">
+                    <div class="text-left">
+                        <div><h2>{{ $user->name }} {{ $user->egresado->apellidos }}</h2></div>
+                        <div><h4>{{ $user->egresado->pais->nombre }}</h4></div>
+                        <div> {{ $user->egresado->edad }} anios</div>
+                    </div>
+                    <h5 class="text-center mt-5">
+                        <a class="p-2 bg-orange text-white" href="#">Actualizar perfil</a>   
+                    </h5>
                 </div>
             </div>
         </div>
-        <div class="row mh-50 p-2 shadow-sm">
+        
+        <div class="row p-20 h-50">
             <div class="col-6 d-flex flex-column justify-content-center p-2 text-white" id="profile-section-3">
-                <h5 class="text-center">INTERESES</h5>
+                <h4 class="text-center orange-color">INTERESES</h4>
                 <div class="overflow-y p-4" id="">
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center button-hover">
@@ -42,7 +44,10 @@
                     <a class="p-2 orange-color button-hover" href="#">Actualizar intereses</a>   
                 </h5>
             </div>
-            <div class="col-6 d-flex flex-column justify-content-center"></div>
+            <div class="col-6 d-flex flex-column justify-content-center">
+                <h4 class="text-center orange-color">AMIGOS</h4>
+            </div>
         </div>
+        
     </div>
 @endsection
