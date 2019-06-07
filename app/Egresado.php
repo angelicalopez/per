@@ -28,6 +28,6 @@ class Egresado extends Model
 
     public function intereses()
     {
-        return $this->hasMany('App\Interes');
+        return $this->belongsToMany('App\Interes', 'intereses_egresados', 'egresado_id', 'interes_id');
     }
 }
