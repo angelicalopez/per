@@ -39,7 +39,7 @@
                                     <button class="btn btn-danger btn-block">Iniciar sesion</button>
                                 </form>
                                 <div class="forgot">
-                                    <a href="#" class="btn btn-simple btn-danger">Olvide mi contrasena</a>
+                                    <a href="{{ route('password.request') }}" class="btn btn-simple btn-danger">Olvide mi contrasena</a>
                                 </div>
                             </div>
                         </div>
